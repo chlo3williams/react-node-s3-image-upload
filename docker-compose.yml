@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: backend
+    env_file:
+      - ./backend/.env
+    build:
+      context: ./backend
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+      - ~/.aws:/root/.aws
+    environment:
+      - NODE_ENV=development
+      - AWS_PROFILE=chloe-dev
+
+  frontend:
+    container_name: frontend
+    env_file:
+      - ./frontend/.env
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - backend
+
+networks:
+  app-network:
+    driver: bridge

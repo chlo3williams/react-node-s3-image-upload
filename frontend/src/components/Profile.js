@@ -1,5 +1,6 @@
 import { Box, Image, Text, VStack } from '@chakra-ui/react';
 import Posts from './Posts';
+import avatar from '../avatar.png';
 
 const Profile = () => {
   return (
@@ -8,10 +9,10 @@ const Profile = () => {
         <Image
           borderRadius="full"
           boxSize="80px"
-          src="https://bit.ly/kent-c-dodds"
+          src={avatar}
           alt="Profile"
         />
-        <Text>Mark Markstrom</Text>
+        <Text>Chloe Williams</Text>
         <Text fontSize="lg" color="gray.400">
           Software Engineer
         </Text>
